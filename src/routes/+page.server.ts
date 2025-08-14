@@ -8,6 +8,14 @@ export async function load() {
 	});
 	console.log('this is server');
 	// await prisma.bill
+	const data = await prisma.bill.findMany({
+		where: {},
+		include: {
+			billItem: true
+		}
+	})
+
+
 	// await prisma.user.create({
 	//     data:{
 	//         'email' : 'win@gmail.com',
@@ -21,6 +29,7 @@ export async function load() {
 	//     }
 	// })
 	return {
-		users
+		users,
+		data
 	};
 }

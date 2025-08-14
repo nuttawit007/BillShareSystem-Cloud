@@ -5,8 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "src/generated/prisma"
+  provider      = "prisma-client"
+  output        = "src/generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -31,15 +32,15 @@ model Post {
 }
 
 model Bill {
-  id Int @id @default(autoincrement())
-  title String
+  id       Int        @id @default(autoincrement())
+  title    String
   billItem BillItem[]
 }
 
 model BillItem {
-  id Int @id @default(autoincrement())
-  name String
-  price Decimal
-  billId  Int
-  bill    Bill    @relation(fields: [billId], references: [id])
+  id     Int     @id @default(autoincrement())
+  name   String
+  price  Decimal
+  billId Int
+  bill   Bill    @relation(fields: [billId], references: [id])
 }
