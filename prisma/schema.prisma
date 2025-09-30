@@ -15,32 +15,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id])
-}
-
 model Bill {
-  id       Int        @id @default(autoincrement())
-  title    String
-  billItem BillItem[]
+  id        Int        @id @default(autoincrement())
+  title     String
+  billDate  DateTime
+  customer  String[]
+  billItems BillItem[]
 }
 
 model BillItem {
-  id     Int     @id @default(autoincrement())
-  name   String
-  price  Decimal
-  billId Int
-  bill   Bill    @relation(fields: [billId], references: [id])
+  id       Int      @id @default(autoincrement())
+  name     String
+  price    Float
+  amount   Int    @default(1)
+  customer String[]
+  bill     Bill?    @relation(fields: [billId], references: [id])
+  billId   Int?
 }
+

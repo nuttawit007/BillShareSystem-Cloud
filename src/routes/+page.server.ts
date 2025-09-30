@@ -1,35 +1,47 @@
 import prisma from '$lib/prisma';
+import { fail, redirect } from '@sveltejs/kit';
+import type { Actions } from './$types';
+
 
 export async function load() {
-	const users = await prisma.user.findMany({
+	const bill = await prisma.bill.findMany({
 		include: {
-			posts: true
+			billItems: true
+		},
+		orderBy: {
+			billDate: 'desc'
 		}
 	});
-	console.log('this is server');
-	// await prisma.bill
-	const data = await prisma.bill.findMany({
-		where: {},
-		include: {
-			billItem: true
-		}
-	})
 
-
-	// await prisma.user.create({
-	//     data:{
-	//         'email' : 'win@gmail.com',
-	//         'name' : 'win',
-	//         'posts' : {
-	//             'create' : {
-	//                 'title' : 'test',
-	//                 'content' : 'prisma test'
-	//             }
-	//         }
-	//     }
-	// })
 	return {
-		users,
-		data
+		bill
 	};
 }
+
+export const actions: Actions = {
+	createBill: async ({ request }) => {
+		const formData = await request.formData();
+		const title = formData.get('title');
+
+		// 2.
+		if (!title) {
+			return fail(400, { title, missing: true });
+		}
+
+		// 3.
+		if (typeof title != 'string') {
+			return fail(400, { incorrect: true });
+		}
+		// 4.
+		await prisma.bill.create({
+			data: {
+				title: title,
+				billDate: new Date(),
+				billItems: {}
+			}
+		});
+
+		//5.
+		throw redirect(303, `/`);
+	}
+} satisfies Actions;
