@@ -111,6 +111,7 @@
 						{/if}
 						<Table.Cell class="text-left">
 							<Drawer title="Select People" lst={customer} selected={item.customer} id={item.id} billId={billId} />
+							<Button type="button" href={`/bill/${billId}/${item.id}/menu`} class="cursor-pointer">edit</Button>
 							<Button type="button" class="cursor-pointer bg-red-500 hover:bg-red-700" onclick={() => deleteMenu(item.id)}>delete</Button>
 						</Table.Cell>
 					</Table.Row>

@@ -5,7 +5,7 @@
 	let vat = $state(false);
 	let service_charge = $state(false);
 
-	let { result, billId } = $props();
+	let { result = [], billId, page } = $props();
 
 	function summarizeBill(
 		result: {
@@ -17,9 +17,10 @@
 		vat: boolean = false,
 		service_charge: boolean = false
 	) {
+		const items = Array.isArray(result) ? result : [];
 		const summary: Record<string, { items: string[]; total: number }> = {};
 
-		for (const item of result) {
+		for (const item of items) {
 			if (!item.customer || item.customer.length === 0) continue;
 			const perPerson = (item.price * item.amount) / item.customer.length;
 			for (const person of item.customer) {
@@ -57,50 +58,52 @@
 
 <section class="mt-4">
 	<div>
-		<h1 class="mb-4 text-lg font-semibold">Optional</h1>
-		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-			<!-- VAT 7% -->
-			<label
-				class="group cursor-pointer rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
-			>
-				<div class="flex items-start gap-3">
-					<input
-						type="checkbox"
-						name="optional"
-						value="vat"
-						onchange={() => (vat = !vat)}
-						class="mt-0.5 size-5 rounded border-slate-300 accent-emerald-600 dark:border-slate-700 dark:accent-emerald-500"
-					/>
-					<div>
-						<div class="leading-6 font-medium">VAT 7%</div>
-						<div class="text-xs text-slate-500 dark:text-slate-400">
-							ภาษีมูลค่าเพิ่มตามอัตรามาตรฐาน
+		{#if page === 'user'}
+			<h1 class="mb-4 text-lg font-semibold">Optional</h1>
+			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+				<!-- VAT 7% -->
+				<label
+					class="group cursor-pointer rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
+				>
+					<div class="flex items-start gap-3">
+						<input
+							type="checkbox"
+							name="optional"
+							value="vat"
+							onchange={() => (vat = !vat)}
+							class="mt-0.5 size-5 rounded border-slate-300 accent-emerald-600 dark:border-slate-700 dark:accent-emerald-500"
+						/>
+						<div>
+							<div class="leading-6 font-medium">VAT 7%</div>
+							<div class="text-xs text-slate-500 dark:text-slate-400">
+								ภาษีมูลค่าเพิ่มตามอัตรามาตรฐาน
+							</div>
 						</div>
 					</div>
-				</div>
-			</label>
+				</label>
 
-			<!-- Service charge 10% -->
-			<label
-				class="group cursor-pointer rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
-			>
-				<div class="flex items-start gap-3">
-					<input
-						type="checkbox"
-						name="optional"
-						value="service charge"
-						onchange={() => (service_charge = !service_charge)}
-						class="mt-0.5 size-5 rounded border-slate-300 accent-emerald-600 dark:border-slate-700 dark:accent-emerald-500"
-					/>
-					<div>
-						<div class="leading-6 font-medium">Service charge 10%</div>
-						<div class="text-xs text-slate-500 dark:text-slate-400">
-							ค่าบริการตามนโยบายร้าน/องค์กร
+				<!-- Service charge 10% -->
+				<label
+					class="group cursor-pointer rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-500 hover:shadow dark:border-slate-800 dark:bg-slate-900"
+				>
+					<div class="flex items-start gap-3">
+						<input
+							type="checkbox"
+							name="optional"
+							value="service charge"
+							onchange={() => (service_charge = !service_charge)}
+							class="mt-0.5 size-5 rounded border-slate-300 accent-emerald-600 dark:border-slate-700 dark:accent-emerald-500"
+						/>
+						<div>
+							<div class="leading-6 font-medium">Service charge 10%</div>
+							<div class="text-xs text-slate-500 dark:text-slate-400">
+								ค่าบริการตามนโยบายร้าน/องค์กร
+							</div>
 						</div>
 					</div>
-				</div>
-			</label>
-		</div>
+				</label>
+			</div>
+		{/if}
 	</div>
 
 	<div class="mt-8 w-full">
@@ -119,33 +122,51 @@
 
 					<!-- Body -->
 					<Table.Body>
-						{#each Object.entries(summary) as [name, person], index}
-							<Table.Row class="transition-colors even:bg-slate-50 hover:bg-slate-100">
-								<Table.Cell class="px-4 py-3 font-medium text-slate-900">
-									{index + 1}
+						{#if Object.keys(summary).length === 0}
+							<Table.Row>
+								<Table.Cell
+									class="px-4 py-6 text-center text-slate-500"
+									colspan={4}
+								>
+									ยังไม่มีข้อมูลการแบ่งบิล
 								</Table.Cell>
-								<Table.Cell class="px-4 py-3 text-slate-700">
-									{name}
-								</Table.Cell>
-								<Table.Cell class="px-4 py-3 font-mono tabular-nums">
-									{person.total.toFixed(2)} ฿
-								</Table.Cell>
-					<Table.Cell class="px-4 py-3 text-left">
-						{#if billId}
-							<Button
-								class='cursor-pointer bg-blue-500 hover:bg-blue-700'
-								href={`/bill/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
-							>
-								detail
-							</Button>
-						{:else}
-							<Button class='cursor-pointer bg-blue-500 hover:bg-blue-700' disabled>
-								detail
-							</Button>
-						{/if}
-					</Table.Cell>
 							</Table.Row>
-						{/each}
+						{:else}
+							{#each Object.entries(summary) as [name, person], index}
+								<Table.Row class="transition-colors even:bg-slate-50 hover:bg-slate-100">
+									<Table.Cell class="px-4 py-3 font-medium text-slate-900">
+										{index + 1}
+									</Table.Cell>
+									<Table.Cell class="px-4 py-3 text-slate-700">
+										{name}
+									</Table.Cell>
+									<Table.Cell class="px-4 py-3 font-mono tabular-nums">
+										{person.total.toFixed(2)} ฿
+									</Table.Cell>
+									<Table.Cell class="px-4 py-3 text-left">
+										{#if billId && page === 'user'}
+											<Button
+												class="cursor-pointer bg-blue-500 hover:bg-blue-700"
+												href={`/dashboard/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
+											>
+												detail
+											</Button>
+										{:else if billId && page === 'admin'}
+											<Button
+												class="cursor-pointer bg-blue-500 hover:bg-blue-700"
+												href={`/dashboard/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
+											>
+												detail
+											</Button>
+										{:else}
+											<Button class="cursor-pointer bg-blue-500 hover:bg-blue-700" disabled>
+												detail
+											</Button>
+										{/if}
+									</Table.Cell>
+								</Table.Row>
+							{/each}
+						{/if}
 					</Table.Body>
 
 					<!-- Footer (Total) -->

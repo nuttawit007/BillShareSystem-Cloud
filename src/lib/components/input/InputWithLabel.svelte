@@ -11,6 +11,11 @@
 		name?: string;
 		inputText?: string;
 	}>();
+
+	// set default value for amount input
+    if (name === 'amount' && (!inputText || inputText === '')) {
+        inputText = '1';
+    }
 </script>
 
 <div class=" w-full space-y-2">

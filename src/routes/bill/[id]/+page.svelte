@@ -43,7 +43,7 @@
 	{:else if setStage === 'menu'}
 		<MenuView menu={bill?.billItems} billId={id} customer={bill?.customer} />
 	{:else if setStage === 'result'}
-		<ResultView result={bill?.billItems} billId={id}/>
+		<ResultView result={bill?.billItems} billId={id} page={'user'}/>
 	{/if}
 	<Pagination bind:stage={setStage}/>
 </section>
