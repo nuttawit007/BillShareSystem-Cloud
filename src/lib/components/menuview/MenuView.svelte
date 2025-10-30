@@ -76,43 +76,59 @@
 </script>
 
 <section class="mt-4">
-	<form method="POST" onsubmit={addMenu} >
-		<div class="flex items-end gap-4">
-			<InputWithLabel placeholder="Add new menu" label={'Add Menu'} name={'name'}/>
-			<InputWithLabel placeholder="price" name={'price'}/>
-			<InputWithLabel placeholder="amount" name={'amount'}/>
-			<Button type='submit' class='cursor-pointer'>Add</Button>
+	<form method="POST" onsubmit={addMenu}>
+		<div class="flex items-end gap-4 rounded-xl border border-violet-100 bg-white/90 p-4
+					shadow-sm shadow-violet-100/60 backdrop-blur-sm">
+			<InputWithLabel placeholder="Add new menu" label={'Add Menu'} name={'name'} />
+			<InputWithLabel placeholder="price" name={'price'} />
+			<InputWithLabel placeholder="amount" name={'amount'} />
+			<Button type='submit'
+				class='cursor-pointer rounded-lg bg-violet-600 px-5 py-2 text-white hover:bg-violet-700
+						focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2'>
+				Add
+			</Button>
 		</div>
 	</form>
 
-	<div class="mt-8 w-full rounded-md border">
+	<div class="mt-8 w-full rounded-xl border border-violet-100 bg-white/90 overflow-hidden
+			shadow-sm shadow-violet-100/60 backdrop-blur-sm">
 		<Table.Root>
-			<Table.Header class="bg-gray-300">
+			<!-- Header -->
+			<Table.Header class="sticky top-0 z-10 bg-slate-800">
 				<Table.Row>
-					<Table.Head class="w-[100px]">ID</Table.Head>
-					<Table.Head>Menu</Table.Head>
-					<Table.Head>Price</Table.Head>
-					<Table.Head>Amount</Table.Head>
-					<Table.Head>People</Table.Head>
-					<Table.Head class="w-[230px] text-left">Actions</Table.Head>
+					<Table.Head class="w-[100px] text-white px-4 py-3">ID</Table.Head>
+					<Table.Head class="text-white px-4 py-3">Menu</Table.Head>
+					<Table.Head class="text-white px-4 py-3">Price</Table.Head>
+					<Table.Head class="text-white px-4 py-3">Amount</Table.Head>
+					<Table.Head class="text-white px-4 py-3">People</Table.Head>
+					<Table.Head class="w-[230px] text-left text-white px-4 py-3">Actions</Table.Head>
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
 				{#each menu as item, index}
-					<Table.Row>
-						<Table.Cell class="font-medium">{index+1}</Table.Cell>
-						<Table.Cell>{item.name}</Table.Cell>
-						<Table.Cell>{item.price} $</Table.Cell>
-						<Table.Cell>{item.amount}</Table.Cell>
+					<Table.Row class="hover:bg-violet-50/50 transition-colors">
+						<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
+						<Table.Cell class="text-slate-900 px-4 py-3">{item.name}</Table.Cell>
+						<Table.Cell class="text-slate-700 px-4 py-3 font-mono tabular-nums">{item.price} $</Table.Cell>
+						<Table.Cell class="text-slate-700 px-4 py-3">{item.amount}</Table.Cell>
 						{#if item.customer.length > 0}
-							<Table.Cell>{item.customer}</Table.Cell>
+							<Table.Cell class="text-slate-700 px-4 py-6">{item.customer}</Table.Cell>
 						{:else}
-							<Table.Cell> - </Table.Cell>
+							<Table.Cell class="text-slate-400 px-4 py-3"> - </Table.Cell>
 						{/if}
-						<Table.Cell class="text-left">
+						<Table.Cell class="text-left space-x-2">
 							<Drawer title="Select People" lst={customer} selected={item.customer} id={item.id} billId={billId} />
-							<Button type="button" href={`/bill/${billId}/${item.id}/menu`} class="cursor-pointer">edit</Button>
-							<Button type="button" class="cursor-pointer bg-red-500 hover:bg-red-700" onclick={() => deleteMenu(item.id)}>delete</Button>
+							<Button type="button"
+								href={`/bill/${billId}/${item.id}/menu`}
+								class="cursor-pointer rounded-md border bg-yellow-400 px-4 py-[5px] text-black  hover:bg-yellow-500">
+								edit
+							</Button>
+							<Button type="button"
+								class="cursor-pointer rounded-md bg-red-500 px-4 py-[5px] text-white
+									hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+								onclick={() => deleteMenu(item.id)}>
+								delete
+							</Button>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -120,3 +136,4 @@
 		</Table.Root>
 	</div>
 </section>
+

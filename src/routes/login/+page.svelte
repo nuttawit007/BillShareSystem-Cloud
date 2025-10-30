@@ -24,13 +24,14 @@
 	}
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-white via-violet-50 to-violet-100 p-4">
 	<div class="w-full max-w-md">
-		<!-- Login Card -->
-		<div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
+		<!-- การ์ดขาว ขอบม่วงอ่อน เงานุ่ม -->
+		<div class="rounded-2xl border border-violet-100 bg-white/90 p-8 shadow-xl shadow-violet-100/40 backdrop-blur-sm">
 			<!-- Header -->
 			<div class="mb-8 text-center">
-				<div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-slate-900">
+				<!-- โลโก้วงกลมม่วง -->
+				<div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-600">
 					<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
@@ -41,7 +42,7 @@
 					</svg>
 				</div>
 				<h1 class="mb-2 text-2xl font-semibold text-slate-900">เข้าสู่ระบบ</h1>
-				<p class="text-sm text-slate-600">กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ</p>
+				<p class="text-sm text-slate-500">กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ</p>
 			</div>
 
 			<!-- Login Form -->
@@ -54,7 +55,7 @@
 					<div class="relative">
 						<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 							<svg
-								class="h-5 w-5 text-slate-400"
+								class="h-5 w-5 text-violet-400"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -73,7 +74,7 @@
 							bind:value={name}
 							placeholder="กรอกชื่อผู้ใช้"
 							required
-							class="w-full rounded-lg border border-slate-300 py-3 pr-4 pl-10 text-slate-900 transition-all outline-none placeholder:text-slate-400 focus:border-transparent focus:ring-2 focus:ring-slate-900"
+							class="w-full rounded-xl border border-violet-200/70 bg-white py-3 pr-4 pl-10 text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-transparent focus:ring-2 focus:ring-violet-600"
 						/>
 					</div>
 				</div>
@@ -86,7 +87,7 @@
 					<div class="relative">
 						<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 							<svg
-								class="h-5 w-5 text-slate-400"
+								class="h-5 w-5 text-violet-400"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -105,12 +106,12 @@
 							bind:value={password}
 							placeholder="กรอกรหัสผ่าน"
 							required
-							class="w-full rounded-lg border border-slate-300 py-3 pr-12 pl-10 text-slate-900 transition-all outline-none placeholder:text-slate-400 focus:border-transparent focus:ring-2 focus:ring-slate-900"
+							class="w-full rounded-xl border border-violet-200/70 bg-white py-3 pr-12 pl-10 text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-transparent focus:ring-2 focus:ring-violet-600"
 						/>
 						<button
 							type="button"
 							onclick={togglePasswordVisibility}
-							class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 transition-colors hover:text-slate-600"
+							class="absolute inset-y-0 right-0 flex items-center pr-3 text-violet-400 transition-colors hover:text-violet-600"
 						>
 							{#if showPassword}
 								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,7 +146,7 @@
 				<button
 					type="submit"
 					disabled={isLoading}
-					class="flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 py-3 font-medium text-white transition-all hover:bg-slate-800 focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+					class="flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 py-3 font-medium text-white transition-all hover:bg-violet-700 focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
 				>
 					{#if isLoading}
 						<svg class="h-5 w-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">

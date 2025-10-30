@@ -61,28 +61,30 @@
 
 <section class="mt-4">
 	<form method="POST" onsubmit={addCustomer} >
-		<div class="flex items-end gap-4">
+		<div class="flex items-end gap-4 rounded-xl border border-violet-100 bg-white/90 p-4
+					shadow-sm shadow-violet-100/60 backdrop-blur-sm">
 			<InputWithLabel placeholder="Add new people" label={'Add people'} name='name'/>
-			<Button type="submit" class='cursor-pointer'>Add</Button>
+			<Button type="submit" class='bg-violet-600 hover:bg-violet-700 px-5 py-2 rounded-lg cursor-pointer'>Add</Button>
 		</div>
 	</form>
 
-	<div class="mt-8 w-full rounded-md border">
+	<div class="mt-8 w-full rounded-md border overflow-hidden
+			shadow-sm shadow-slate-200">
 		<Table.Root>
-			<Table.Header class="bg-gray-300">
+			<Table.Header class="sticky top-0 z-10 bg-slate-800">
 				<Table.Row>
-					<Table.Head class="w-[100px]">ID</Table.Head>
-					<Table.Head>Name</Table.Head>
-					<Table.Head class="w-[230px] text-left">Actions</Table.Head>
+					<Table.Head class="w-[100px] text-white px-4 py-3">ID</Table.Head>
+					<Table.Head class='text-white px-4 py-3'>Name</Table.Head>
+					<Table.Head class="w-[230px] text-left text-white px-4 py-3">Actions</Table.Head>
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
 				{#each customer as item, index}
 					<Table.Row>
-						<Table.Cell class="font-medium">{index+1}</Table.Cell>
-						<Table.Cell>{item}</Table.Cell>
-						<Table.Cell class="text-left">
-							<Button type="button" class="bg-red-500 rounded-sm hover:bg-red-700" onclick={() => deleteCustomer(item)}>delete</Button>
+						<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
+						<Table.Cell class=' px-4 py-3'>{item}</Table.Cell>
+						<Table.Cell class="text-left px-4 py-3">
+							<Button type="button" class="bg-red-500 rounded-md hover:bg-red-700  px-4 py-[5px]  cursor-pointer" onclick={() => deleteCustomer(item)}>delete</Button>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
