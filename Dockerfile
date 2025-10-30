@@ -10,7 +10,7 @@ COPY package.json pnpm-lock.yaml* ./
 COPY prisma ./prisma
 RUN pnpm install
 
-RUN pnpm prisma generate
+RUN pnpx prisma generate
 
 COPY . .
 
