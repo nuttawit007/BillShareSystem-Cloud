@@ -29,6 +29,12 @@
 	};
 
 	const formatCurrency = (value: number) => currencyFormatter.format(value ?? 0);
+
+	// format id as 5 digits with leading zeros, prefixed with #
+    const formatId = (v: number | string) => {
+        const n = Number(v) || 0;
+        return `#${String(n).padStart(5, '0')}`;
+    };
 </script>
 
 <div class="min-h-screen bg-gray-100 p-8">
@@ -88,7 +94,7 @@
                 {#each bills as bill, i}
 					<Table.Row class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
 						<Table.Cell class="px-4 py-3 text-gray-700">{i + 1}</Table.Cell>
-						<Table.Cell class="px-4 py-3 text-gray-700">#{bill.id}</Table.Cell>
+						<Table.Cell class="px-4 py-3 text-gray-700">{formatId(bill.id)}</Table.Cell>
 						<Table.Cell class="px-4 py-3 text-gray-700">{bill.title}</Table.Cell>
 						<Table.Cell class="px-4 py-3 text-gray-700">{formatDateTime(bill.billDate)}</Table.Cell>
 						<Table.Cell class="px-4 py-3 text-gray-700">{formatCurrency(bill.total)}</Table.Cell>
