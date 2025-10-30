@@ -5,7 +5,6 @@ RUN apk add --no-cache libc6-compat openssl3
 WORKDIR /app
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
-ENV ORIGIN=http://main-alb-1765951257.us-east-1.elb.amazonaws.com
 
 COPY package.json pnpm-lock.yaml* ./
 COPY prisma ./prisma
