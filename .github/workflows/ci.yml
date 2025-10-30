@@ -24,8 +24,4 @@ jobs:
 
             - name: Build & Push Multi-Arch Docker Image
               run: |
-                  docker buildx build \
-                    --platform linux/amd64,linux/arm64 \
-                    --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
-                    -t ${{ secrets.DOCKER_NAME }}/bill-share:latest \
-                    --push .
+                  docker buildx build --platform linux/arm64 --build-arg DATABASE_URL=${{secrets.DATABASE_URL}} -t ${{ secrets.DOCKER_NAME }}/bill-share:latest .
