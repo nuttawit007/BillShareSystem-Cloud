@@ -34,17 +34,38 @@
 
 {#if bill}
 	<section class="space-y-6">
-		<header class="rounded-md border border-slate-200 bg-white p-6 shadow-sm">
-			<h1 class="text-2xl font-semibold text-slate-900">{bill.title}</h1>
-			<p class="text-sm text-slate-500">Bill ID: #{bill.id}</p>
-			<p class="text-xs text-slate-400">สร้างเมื่อ: {formatBillDate(bill.billDate)}</p>
-			<a class="mt-3 inline-flex items-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500" href={`/dashboard`}>Back</a>
+		<header
+			class="rounded-3xl bg-gradient-to-r from-white via-violet-50
+        to-violet-200 p-6 shadow-md ring-1
+        shadow-violet-100/60 ring-violet-100"
+		>
+			<div class="flex items-start justify-between gap-4">
+				<!-- Left: Title & meta -->
+				<div class="space-y-1">
+					<p class="text-xs font-medium text-slate-600">Current Bill</p>
+					<h1 class="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+						{bill.title}
+					</h1>
+
+					<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+						<span class="text-slate-700">Bill ID: #{bill.id}</span>
+						<span class="hidden h-1 w-1 rounded-full bg-slate-300 sm:inline"></span>
+						<span class="text-slate-600">สร้างเมื่อ: {formatBillDate(bill.billDate)}</span>
+					</div>
+				</div>
+				<!-- Right: Back button -->
+				<div>
+					<a class="mt-3 inline-flex items-center rounded-md bg-violet-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-700" href="/dashboard">Back</a>
+				</div>
+			</div>
 		</header>
 
-		<ResultView result={bill.billItems} billId={bill.id} page={'admin'}/>
+		<ResultView result={bill.billItems} billId={bill.id} page={'admin'} />
 	</section>
 {:else}
-	<p class="rounded-md border border-dashed border-slate-300 bg-white p-6 text-center text-slate-500">
+	<p
+		class="rounded-md border border-dashed border-slate-300 bg-white p-6 text-center text-slate-500"
+	>
 		ไม่พบข้อมูลบิลนี้
 	</p>
 {/if}

@@ -37,7 +37,7 @@
     };
 </script>
 
-<div class="min-h-screen bg-gray-100 p-8">
+<div class="min-h-screen bg-gradient-to-br from-white via-violet-100 to-violet-300 p-8 rounded-xl">
     <h1 class="mb-4 font-bold text-2xl">Dashboard</h1>
 
 	<!-- Stats Cards -->
@@ -77,16 +77,16 @@
 		</div>
 	</div>
 
-    <div class="rounded-lg shadow mt-4 border">
+    <div class="rounded-lg shadow mt-4 border overflow-hidden">
         <Table.Root>
-            <Table.Header class="bg-gray-300">
+            <Table.Header class="sticky top-0 z-10 bg-slate-800">
                 <Table.Row>
-                    <Table.Head class="w-[60px]">No</Table.Head>
-                    <Table.Head class="w-[120px]">Bill ID</Table.Head>
-                    <Table.Head>Title</Table.Head>
-                    <Table.Head>Bill Date</Table.Head>
-                    <Table.Head class="w-[120px]">Price</Table.Head>
-                    <Table.Head class="w-[160px] text-left">Actions</Table.Head>
+                    <Table.Head class="px-4 w-[60px] text-white">No</Table.Head>
+                    <Table.Head class="w-[120px] text-white">Bill ID</Table.Head>
+                    <Table.Head class="text-white">Title</Table.Head>
+                    <Table.Head class='text-white'>Bill Date</Table.Head>
+                    <Table.Head class="w-[120px] text-white">Price</Table.Head>
+                    <Table.Head class="w-[160px] text-left text-white">Actions</Table.Head>
                 </Table.Row>
             </Table.Header>
 
@@ -100,7 +100,7 @@
 						<Table.Cell class="px-4 py-3 text-gray-700">{formatCurrency(bill.total)}</Table.Cell>
 						<Table.Cell class="px-4 py-3 text-left">
 							<a href={`/dashboard/${bill.id}`} class="inline-block mr-2">
-								<Button class="px-3 py-1 cursor-pointer">View</Button>
+								<Button class="bg-violet-600 hover:bg-violet-700 px-3 py-1 cursor-pointer">View</Button>
 							</a>
 						</Table.Cell>
 					</Table.Row>

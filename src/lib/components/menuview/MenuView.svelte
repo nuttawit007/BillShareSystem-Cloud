@@ -107,33 +107,41 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each menu as item, index}
-					<Table.Row class="hover:bg-violet-50/50 transition-colors">
-						<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
-						<Table.Cell class="text-slate-900 px-4 py-3">{item.name}</Table.Cell>
-						<Table.Cell class="text-slate-700 px-4 py-3 font-mono tabular-nums">{item.price} $</Table.Cell>
-						<Table.Cell class="text-slate-700 px-4 py-3">{item.amount}</Table.Cell>
-						{#if item.customer.length > 0}
-							<Table.Cell class="text-slate-700 px-4 py-6">{item.customer}</Table.Cell>
-						{:else}
-							<Table.Cell class="text-slate-400 px-4 py-3"> - </Table.Cell>
-						{/if}
-						<Table.Cell class="text-left space-x-2">
-							<Drawer title="Select People" lst={customer} selected={item.customer} id={item.id} billId={billId} />
-							<Button type="button"
-								href={`/bill/${billId}/${item.id}/menu`}
-								class="cursor-pointer rounded-md border bg-yellow-400 px-4 py-[5px] text-black  hover:bg-yellow-500">
-								<Pencil class="w-5 h-5" />
-							</Button>
-							<Button type="button"
-								class="cursor-pointer rounded-md bg-red-500 px-4 py-[5px] text-white
-									hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
-								onclick={() => deleteMenu(item.id)}>
-								<Trash2 class="w-5 h-5" />
-							</Button>
+				{#if menu.length === 0}
+					<Table.Row>
+						<Table.Cell class="px-4 py-6 text-center text-slate-500" colspan={6}>
+							ยังไม่มีรายการอาหาร
 						</Table.Cell>
 					</Table.Row>
-				{/each}
+				{:else}
+					{#each menu as item, index}
+						<Table.Row class="hover:bg-violet-50/50 transition-colors">
+							<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
+							<Table.Cell class="text-slate-900 px-4 py-3">{item.name}</Table.Cell>
+							<Table.Cell class="text-slate-700 px-4 py-3 font-mono tabular-nums">{item.price} $</Table.Cell>
+							<Table.Cell class="text-slate-700 px-4 py-3">{item.amount}</Table.Cell>
+							{#if item.customer.length > 0}
+								<Table.Cell class="text-slate-700 px-4 py-6">{item.customer}</Table.Cell>
+							{:else}
+								<Table.Cell class="text-slate-400 px-4 py-3"> - </Table.Cell>
+							{/if}
+							<Table.Cell class="text-left space-x-2">
+								<Drawer title="Select People" lst={customer} selected={item.customer} id={item.id} billId={billId} />
+								<Button type="button"
+									href={`/bill/${billId}/${item.id}/menu`}
+									class="cursor-pointer rounded-md border bg-yellow-400 px-4 py-[5px] text-black  hover:bg-yellow-500">
+									<Pencil class="w-5 h-5" />
+								</Button>
+								<Button type="button"
+									class="cursor-pointer rounded-md bg-red-500 px-4 py-[5px] text-white
+										hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+									onclick={() => deleteMenu(item.id)}>
+									<Trash2 class="w-5 h-5" />
+								</Button>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+				{/if}
 			</Table.Body>
 		</Table.Root>
 	</div>

@@ -69,7 +69,7 @@
 		</div>
 	</form>
 
-	<div class="mt-8 w-full rounded-md border overflow-hidden
+	<div class="mt-8 w-full rounded-xl border overflow-hidden
 			shadow-sm shadow-slate-200">
 		<Table.Root>
 			<Table.Header class="sticky top-0 z-10 bg-slate-800">
@@ -80,18 +80,24 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each customer as item, index}
+				{#if customer.length === 0}
 					<Table.Row>
-						<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
-						<Table.Cell class=' px-4 py-3'>{item}</Table.Cell>
-						<Table.Cell class="text-left px-4 py-3">
-							<Button type="button" class="bg-red-500 rounded-md hover:bg-red-700  px-4 py-[5px]  cursor-pointer" onclick={() => deleteCustomer(item)}>
-								<Trash2 class="w-5 h-5" />
-								delete
-							</Button>
-						</Table.Cell>
+						<Table.Cell class="px-4 py-6 text-center text-slate-500" colspan={3}>ยังไม่มีรายชื่อ</Table.Cell>
 					</Table.Row>
-				{/each}
+				{:else}
+					{#each customer as item, index}
+						<Table.Row>
+							<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
+							<Table.Cell class=' px-4 py-3'>{item}</Table.Cell>
+							<Table.Cell class="text-left px-4 py-3">
+								<Button type="button" class="bg-red-500 rounded-md hover:bg-red-700  px-4 py-[5px]  cursor-pointer" onclick={() => deleteCustomer(item)}>
+									<Trash2 class="w-5 h-5" />
+									delete
+								</Button>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+				{/if}
 			</Table.Body>
 		</Table.Root>
 	</div>

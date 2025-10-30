@@ -35,9 +35,20 @@
 
 <section>
 	<BillNav bind:stage={setStage}/>
-	<div class="mt-4 text-2xl font-semibold text-center">
-		<h1>{bill?.title} bill</h1>
+	<!-- Card header: Bill title -->
+	<div class="mt-4">
+		<div class="relative rounded-3xl p-5 md:p-6
+				bg-gradient-to-r from-white via-violet-50 to-violet-200
+				shadow-md shadow-violet-100/60 ring-1 ring-violet-100">
+			<div class="space-y-1">
+				<p class="text-xs font-medium text-slate-600">Current Bill</p>
+				<h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 mt-4">
+					{bill?.title ?? 'Untitled'}
+				</h1>
+			</div>
+		</div>
 	</div>
+
 	{#if setStage === 'people'}
 		<PeopleView customer={bill?.customer} billId={id}/>
 	{:else if setStage === 'menu'}

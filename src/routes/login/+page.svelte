@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { Lock, UserRound, EyeOff, Eye } from 'lucide-svelte';
+
     import { username } from '$lib/stores/auth';
     let name = $state('');
 	let password = $state('');
@@ -24,14 +26,14 @@
 	}
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-white via-violet-50 to-violet-100 p-4">
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-white via-violet-100 to-violet-300 p-4">
 	<div class="w-full max-w-md">
 		<!-- การ์ดขาว ขอบม่วงอ่อน เงานุ่ม -->
-		<div class="rounded-2xl border border-violet-100 bg-white/90 p-8 shadow-xl shadow-violet-100/40 backdrop-blur-sm">
+		<div class="rounded-2xl border border-violet-200 bg-white/90 p-8 shadow-xl shadow-violet-100/40 backdrop-blur-sm">
 			<!-- Header -->
 			<div class="mb-8 text-center">
 				<!-- โลโก้วงกลมม่วง -->
-				<div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-600">
+				<div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-800">
 					<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
@@ -54,19 +56,7 @@
 					</label>
 					<div class="relative">
 						<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-							<svg
-								class="h-5 w-5 text-violet-400"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-								/>
-							</svg>
+							<UserRound class='w-5 h-5 text-violet-500' />
 						</div>
 						<input
 							type="text"
@@ -86,19 +76,7 @@
 					</label>
 					<div class="relative">
 						<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-							<svg
-								class="h-5 w-5 text-violet-400"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-								/>
-							</svg>
+							<Lock class='w-5 h-5 text-violet-500' />
 						</div>
 						<input
 							type={showPassword ? 'text' : 'password'}
@@ -114,29 +92,9 @@
 							class="absolute inset-y-0 right-0 flex items-center pr-3 text-violet-400 transition-colors hover:text-violet-600"
 						>
 							{#if showPassword}
-								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 12 5c4.477 0 8.268-2.943 9.542-7z"
-									/>
-								</svg>
+								<Eye class="w-5 h-5" />
 							{:else}
-								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-									/>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 12 5c4.477 0 8.268-2.943 9.542-7z"
-									/>
-								</svg>
+								<EyeOff class="w-5 h-5" />
 							{/if}
 						</button>
 					</div>
@@ -174,7 +132,7 @@
 
 		<!-- Footer -->
 		<p class="mt-6 text-center text-sm text-slate-500">
-			© 2025 IT KMITL. Cloud computing project.
+			© 2025 Bill Share System. Cloud computing project.
 		</p>
 	</div>
 </div>

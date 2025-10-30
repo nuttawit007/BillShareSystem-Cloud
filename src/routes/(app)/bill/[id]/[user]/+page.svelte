@@ -20,14 +20,26 @@
 </script>
 
 <section class="space-y-6">
-	<div class="flex items-center justify-between">
-		<div>
-			<h1 class="text-2xl font-semibold">{billTitle} — {user}</h1>
-			<p class="text-sm text-slate-500">รายละเอียดรายการที่ {user} ต้องจ่าย</p>
-		</div>
-		<Button class="bg-blue-500 hover:bg-blue-600 px-4 py-5 cursor-pointer" href={`/bill/${billId}`}>
+	<div class="rounded-3xl p-5 md:p-6
+			bg-gradient-to-r from-white via-violet-50 to-violet-200
+			ring-1 ring-violet-100 shadow-md shadow-violet-100/60">
+		<div class="flex items-center justify-between gap-4">
+			<div class="space-y-1">
+			<p class="text-xs font-medium text-slate-600">รายละเอียด</p>
+			<h1 class="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900">
+				{billTitle} — {user}
+			</h1>
+			<p class="text-sm text-slate-600">รายละเอียดรายการที่ {user} ต้องจ่าย</p>
+			</div>
+
+			<Button
+			class="cursor-pointer rounded-lg bg-violet-600 px-4 py-2 text-white
+					hover:bg-violet-700 focus:outline-none focus:ring-2
+					focus:ring-violet-600 focus:ring-offset-2"
+			href={`/bill/${billId}`}>
 			กลับสู่หน้ายอดรวม
-		</Button>
+			</Button>
+		</div>
 	</div>
 
 	{#if items.length === 0}
@@ -87,7 +99,7 @@
 						</Table.Row>
 						<Table.Row class="font-semibold">
 							<Table.Cell class="px-4 py-3" colspan={4}>ยอดรวมที่ต้องชำระ</Table.Cell>
-							<Table.Cell class="px-4 py-3 text-right font-mono tabular-nums">{grandTotal.toFixed(2)} ฿</Table.Cell>
+							<Table.Cell class="px-4 py-3 text-bold text-right font-mono tabular-nums text-violet-600">{grandTotal.toFixed(2)} ฿</Table.Cell>
 						</Table.Row>
 					</Table.Footer>
 				</Table.Root>
