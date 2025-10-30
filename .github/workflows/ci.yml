@@ -19,9 +19,13 @@ jobs:
                   username: ${{ secrets.DOCKER_NAME }}
                   password: ${{ secrets.DOCKER_PASSWORD }}
 
-            - name: Build & Push Docker Image
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+
+            - name: Build & Push Multi-Arch Docker Image
               run: |
-                  docker build \
+                  docker buildx build \
+                    --platform linux/amd64,linux/arm64 \
                     --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
-                    -t ${{ secrets.DOCKER_NAME }}/bill-share:latest .
-                  docker push ${{ secrets.DOCKER_NAME }}/bill-share:latest
+                    -t ${{ secrets.DOCKER_NAME }}/bill-share:latest \
+                    --push .
