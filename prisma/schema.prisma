@@ -7,7 +7,7 @@
 generator client {
   provider      = "prisma-client"
   output        = "src/generated/prisma"
-  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x", "linux-musl-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -27,9 +27,8 @@ model BillItem {
   id       Int      @id @default(autoincrement())
   name     String
   price    Float
-  amount   Int    @default(1)
+  amount   Int      @default(1)
   customer String[]
   bill     Bill?    @relation(fields: [billId], references: [id])
   billId   Int?
 }
-

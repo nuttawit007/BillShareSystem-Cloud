@@ -9,7 +9,12 @@ const config = {
 	// 	runes: true
 	// },
 	preprocess: vitePreprocess(),
-	kit: { adapter: adapter() }
+	kit: { 
+		adapter: adapter(),
+		csrf: {
+        	checkOrigin: false 
+        }
+	 }
 };
 
 export default config;
