@@ -56,6 +56,5 @@
 		"@prisma/extension-accelerate": "^2.0.2",
 		"@sveltejs/adapter-node": "^5.2.13",
 		"lucide-svelte": "^0.542.0"
-	},
-	"packageManager": "pnpm@10.14.0"
+	}
 }
