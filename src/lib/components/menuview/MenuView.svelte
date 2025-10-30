@@ -6,6 +6,8 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import Drawer from '../drawer/Drawer.svelte';
 
+	import { Pencil, Trash2 } from 'lucide-svelte';
+
 	let { menu, billId, customer} = $props();
 
 	const stageKey = billId ? `bill-stage-${billId}` : null;
@@ -121,13 +123,13 @@
 							<Button type="button"
 								href={`/bill/${billId}/${item.id}/menu`}
 								class="cursor-pointer rounded-md border bg-yellow-400 px-4 py-[5px] text-black  hover:bg-yellow-500">
-								edit
+								<Pencil class="w-5 h-5" />
 							</Button>
 							<Button type="button"
 								class="cursor-pointer rounded-md bg-red-500 px-4 py-[5px] text-white
 									hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
 								onclick={() => deleteMenu(item.id)}>
-								delete
+								<Trash2 class="w-5 h-5" />
 							</Button>
 						</Table.Cell>
 					</Table.Row>

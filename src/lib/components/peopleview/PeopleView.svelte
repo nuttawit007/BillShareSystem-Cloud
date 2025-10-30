@@ -3,6 +3,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 
 	import * as Table from '$lib/components/ui/table/index.js';
+	import { Trash2 } from 'lucide-svelte';
 
 	let { customer, billId } = $props();
 	$inspect(customer, billId);
@@ -84,7 +85,10 @@
 						<Table.Cell class="font-medium px-4 py-3">{index+1}</Table.Cell>
 						<Table.Cell class=' px-4 py-3'>{item}</Table.Cell>
 						<Table.Cell class="text-left px-4 py-3">
-							<Button type="button" class="bg-red-500 rounded-md hover:bg-red-700  px-4 py-[5px]  cursor-pointer" onclick={() => deleteCustomer(item)}>delete</Button>
+							<Button type="button" class="bg-red-500 rounded-md hover:bg-red-700  px-4 py-[5px]  cursor-pointer" onclick={() => deleteCustomer(item)}>
+								<Trash2 class="w-5 h-5" />
+								delete
+							</Button>
 						</Table.Cell>
 					</Table.Row>
 				{/each}

@@ -39,7 +39,7 @@
 				name="title"
 				bind:inputText={parentText}
 			/>
-			<Button type="submit" class='cursor-pointer'>CREATE</Button>
+			<Button type="submit" class='bg-violet-600 hover:bg-violet-700 cursor-pointer'>Create</Button>
 		</div>
 	</form>
 

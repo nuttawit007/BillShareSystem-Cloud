@@ -2,6 +2,8 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
 
+	import { Info } from 'lucide-svelte';
+
 	let vat = $state(false);
 	let service_charge = $state(false);
 
@@ -149,6 +151,7 @@
 												class="cursor-pointer bg-blue-500 hover:bg-blue-700"
 												href={`/dashboard/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
 											>
+												<Info class="h-5 w-5 shrink-0" />
 												detail
 											</Button>
 										{:else if billId && page !== 'admin'}
@@ -156,6 +159,7 @@
 												class="cursor-pointer bg-blue-500 hover:bg-blue-700"
 												href={`/bill/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
 											>
+												<Info class="h-5 w-5 shrink-0" />
 												detail
 											</Button>
 										{:else}

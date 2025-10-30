@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Trash2 } from 'lucide-svelte';
+
 	let { title, date, id } = $props();
 	// format id as 5 digits with leading zeros, prefixed with #
     const formatId = (v: number | string) => {
@@ -22,10 +24,10 @@
 		<input type="hidden" name="billId" value={id} />
 		<button
 			type="submit"
-			class="rounded-md bg-red-500 px-4 py-[5px] text-white transition
+			class="rounded-md bg-red-500 px-3 py-2 text-white transition
                 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer"
 		>
-			delete
+			<Trash2 class='w-5 h-5' />
 		</button>
 	</form>
 </div>

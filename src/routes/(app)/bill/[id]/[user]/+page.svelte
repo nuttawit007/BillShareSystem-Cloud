@@ -25,8 +25,8 @@
 			<h1 class="text-2xl font-semibold">{billTitle} — {user}</h1>
 			<p class="text-sm text-slate-500">รายละเอียดรายการที่ {user} ต้องจ่าย</p>
 		</div>
-		<Button class="cursor-pointer" href={`/bill/${billId}`}>
-			กลับสู่หน้าผลลัพธ์
+		<Button class="bg-blue-500 hover:bg-blue-600 px-4 py-5 cursor-pointer" href={`/bill/${billId}`}>
+			กลับสู่หน้ายอดรวม
 		</Button>
 	</div>
 
@@ -40,11 +40,11 @@
 				<Table.Root class="w-full text-sm">
 					<Table.Header class="bg-slate-800 text-white">
 						<Table.Row>
-							<Table.Head class="w-[80px] px-4 py-3">ID</Table.Head>
-							<Table.Head class="px-4 py-3">ชื่อรายการ</Table.Head>
-							<Table.Head class="px-4 py-3 text-right">จำนวน</Table.Head>
-							<Table.Head class="px-4 py-3 text-right">ราคารวม</Table.Head>
-							<Table.Head class="px-4 py-3 text-right">ส่วนที่ต้องจ่าย</Table.Head>
+							<Table.Head class="w-[80px] px-4 py-3 text-white">ID</Table.Head>
+							<Table.Head class="px-4 py-3 text-white">ชื่อรายการ</Table.Head>
+							<Table.Head class="px-4 py-3 text-white text-right">จำนวน</Table.Head>
+							<Table.Head class="px-4 py-3 text-white text-right">ราคารวม</Table.Head>
+							<Table.Head class="px-4 py-3 text-white text-right">ส่วนที่ต้องจ่าย</Table.Head>
 						</Table.Row>
 					</Table.Header>
 					<Table.Body>
