@@ -14,9 +14,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/prisma ./prisma
 COPY --from=deps /app/prisma/src/generated ./prisma/src/generated
 COPY . .
-
-RUN pnpm prisma generate
 RUN pnpm build
+RUN pnpm prisma generate
 
 FROM node:20-alpine AS runner
 ENV NODE_ENV=production
