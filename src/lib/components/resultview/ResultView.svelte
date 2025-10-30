@@ -144,17 +144,17 @@
 										{person.total.toFixed(2)} ฿
 									</Table.Cell>
 									<Table.Cell class="px-4 py-3 text-left">
-										{#if billId && page === 'user'}
+										{#if billId && page === 'admin'}
 											<Button
 												class="cursor-pointer bg-blue-500 hover:bg-blue-700"
 												href={`/dashboard/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
 											>
 												detail
 											</Button>
-										{:else if billId && page === 'admin'}
+										{:else if billId && page !== 'admin'}
 											<Button
 												class="cursor-pointer bg-blue-500 hover:bg-blue-700"
-												href={`/dashboard/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
+												href={`/bill/${billId}/${encodeURIComponent(name)}?vat=${vat ? 'true' : 'false'}&service=${service_charge ? 'true' : 'false'}`}
 											>
 												detail
 											</Button>
